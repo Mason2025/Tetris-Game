@@ -29,4 +29,3 @@ class Block():
 
     def __init__(self, color):
 
-######Test for curiosity#######################
