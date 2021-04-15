@@ -27,5 +27,13 @@ currentScore = 0
 # Block super class
 class Block():
 
-    def __init__(self, color):
+    blockColors = ["red","green","yellow","orange","blue","purple"]
+
+    def __init__(self):
+
+# classes for different shapes
+class TwoBlock(Block):
+
+    def __init__(self):
+        Block.__init__(self)
 
