@@ -1,8 +1,12 @@
 # Team: 8-bit
 # Members: Mason, David, Casey, Logan
 
-# inheritance from Tkinter
+# importing Tkinter's methods and variables
 from tkinter import *
+# importing pygame
+import pygame
+# importing random
+import random
 
 # start screen that awaits input to begin the game
 
@@ -30,6 +34,7 @@ class Block():
     blockColors = ["red","green","yellow","orange","blue","purple"]
 
     def __init__(self):
+        
 
 # classes for different shapes
 class TwoBlock(Block):
@@ -42,3 +47,5 @@ class TwoBlock(Block):
 window = Tk()
 window.title("Tetris")
 window.grid(row=20, column=10)
+
+window.mainloop()
