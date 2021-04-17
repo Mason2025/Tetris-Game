@@ -3,21 +3,33 @@
 
 # importing Tkinter's methods and variables
 from tkinter import *
+<<<<<<< HEAD
 # importing pygame
 import pygame
 # importing random
 import random
+=======
+from random import *
+
+
+
+shapes = {"Square":[(-1,-1),(0,-1),(0,0),(-1,0)]}
+shapeColor = {"Square":"blue"}
+
+
+>>>>>>> dbfddaa6e50108815b4efa9a35e52c4ea65f2993
 
 # start screen that awaits input to begin the game
 
 # screen that displays highscore and current score, waits for input to play again
 
 # Class for the game
+
 class Game(Frame):
 
     def __init__(self, parent):
         Frame.__init__(self,parent)
-        
+
 # highscore and current score initialization
 highscore = 0
 currentScore = 0
