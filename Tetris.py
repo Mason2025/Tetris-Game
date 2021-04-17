@@ -37,3 +37,8 @@ class TwoBlock(Block):
     def __init__(self):
         Block.__init__(self)
 
+
+#create window
+window = Tk()
+window.title("Tetris")
+window.grid(row=20, column=10)
