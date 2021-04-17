@@ -3,17 +3,26 @@
 
 # inheritance from Tkinter
 from tkinter import *
+from random import *
+
+
+
+shapes = {"Square":[(-1,-1),(0,-1),(0,0),(-1,0)]}
+shapeColor = {"Square":"blue"}
+
+
 
 # start screen that awaits input to begin the game
 
 # screen that displays highscore and current score, waits for input to play again
 
 # Class for the game
+
 class Game(Frame):
 
     def __init__(self, parent):
         Frame.__init__(self,parent)
-        
+
 # highscore and current score initialization
 highscore = 0
 currentScore = 0
