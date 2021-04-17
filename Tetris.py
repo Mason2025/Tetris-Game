@@ -3,7 +3,6 @@
 
 # importing Tkinter's methods and variables
 from tkinter import *
-<<<<<<< HEAD
 # importing pygame
 import pygame
 # importing random
@@ -16,8 +15,6 @@ from random import *
 shapes = {"Square":[(-1,-1),(0,-1),(0,0),(-1,0)]}
 shapeColor = {"Square":"blue"}
 
-
->>>>>>> dbfddaa6e50108815b4efa9a35e52c4ea65f2993
 
 # start screen that awaits input to begin the game
 
