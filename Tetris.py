@@ -7,7 +7,6 @@ from tkinter import *
 import pygame
 # importing random
 import random
-from random import *
 
 
 
