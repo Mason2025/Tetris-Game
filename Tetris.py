@@ -38,7 +38,77 @@ class GridSystem(Canvas):
         # the size of a block V
         # self.create_rectangle(20, 20, 40, 40, outline = "blue", fill = "")
         # outline for grid V
-        self.create_rectangle(20, 20, 200, 400, outline = "blue", fill = "")
+        #self.create_rectangle(20, 20, 200, 400, outline = "blue", fill = "")
+        i = 20
+        y = 40
+        # 1
+        while (i > 0):
+            self.create_rectangle(20, 20, 40, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 2
+        while (i > 0):
+            self.create_rectangle(40, 20, 60, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 3
+        while (i > 0):
+            self.create_rectangle(60, 20, 80, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 4
+        while (i > 0):
+            self.create_rectangle(80, 20, 100, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 5
+        while (i > 0):
+            self.create_rectangle(100, 20, 120, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 6
+        while (i > 0):
+            self.create_rectangle(120, 20, 140, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 7
+        while (i > 0):
+            self.create_rectangle(140, 20, 160, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 8
+        while (i > 0):
+            self.create_rectangle(160, 20, 180, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 9
+        while (i > 0):
+            self.create_rectangle(180, 20, 200, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
+        i = 20
+        y = 40
+        # 10
+        while (i > 0):
+            self.create_rectangle(200, 20, 220, y, outline = "blue", fill = "")
+            y += 20
+            i -=1
         
     
 
@@ -46,7 +116,7 @@ class GridSystem(Canvas):
         
 
 # classes for different shapes
-class TwoBlock():
+class Block():
 
     def __init__(self):
         Block.__init__(self)
