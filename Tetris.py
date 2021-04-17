@@ -46,10 +46,6 @@ class GridSystem(Canvas):
         
 
 # classes for different shapes
-class TwoBlock():
-
-    def __init__(self):
-        Block.__init__(self)
 
 
 #create window
