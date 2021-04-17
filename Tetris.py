@@ -37,19 +37,10 @@ currentScore = 0
 # the layout of the grid
 
 # section of code devoted to input from buttons
-
-# classes for the blocks
-
-# Block super class
-class Block():
-
-    blockColors = ["red","green","yellow","orange","blue","purple"]
-
-    def __init__(self):
         
 
 # classes for different shapes
-class TwoBlock(Block):
+class TwoBlock():
 
     def __init__(self):
         Block.__init__(self)
