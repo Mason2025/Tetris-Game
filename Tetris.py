@@ -31,6 +31,8 @@ highscore = 0
 currentScore = 0
 
 # the layout of the grid
+class CoordinateSystem(Canvas):
+    
 
 # section of code devoted to input from buttons
         
