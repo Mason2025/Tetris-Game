@@ -3,8 +3,6 @@
 
 # importing Tkinter's methods and variables
 from tkinter import *
-# importing pygame
-import pygame
 # importing random
 import random
 
@@ -30,7 +28,18 @@ highscore = 0
 currentScore = 0
 
 # the layout of the grid
-class CoordinateSystem(Canvas):
+class GridSystem(Canvas):
+
+    def __init__(self, master):
+        Canvas.__init__(self, master)
+        self.pack(expand=1, fill=BOTH)
+
+    def plotGrid(self):
+        # the size of a block V
+        # self.create_rectangle(20, 20, 40, 40, outline = "blue", fill = "")
+        # outline for grid V
+        self.create_rectangle(20, 20, 200, 400, outline = "blue", fill = "")
+        
     
 
 # section of code devoted to input from buttons
@@ -46,6 +55,11 @@ class TwoBlock():
 #create window
 window = Tk()
 window.title("Tetris")
-window.grid(row=20, column=10)
+
+# opening the game
+s = GridSystem(window)
+# creating the grid
+s.plotGrid()
+
 
 window.mainloop()
