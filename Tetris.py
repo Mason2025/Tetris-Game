@@ -122,9 +122,12 @@ class GridSystem(Canvas):
             i -=1
             
     # colors a block
-    def colorBlock(self, x1, y1, x2, y2, color):
-        blockList[1].blockColor = color
+    def colorBlock(self, i, x1, y1, x2, y2, color):
+        blockList[i].blockColor = color
         self.create_rectangle(x1, y1, x2, y2, outline = "black", fill = color)
+
+    #def blockFall():
+        
     
 
 # section of code devoted to input from buttons
@@ -201,8 +204,10 @@ s = GridSystem(window)
 s.plotGrid()
 
 # colors a block
-s.colorBlock(blockList[1].blockX1, blockList[1].blockY1,
-             blockList[1].blockX2, blockList[1].blockY2 - 20, "red")
+s.colorBlock(5, blockList[5].blockX1, blockList[5].blockY1,
+             blockList[5].blockX2, blockList[5].blockY2 - 20, "red")
+
+
 
 
 window.mainloop()
