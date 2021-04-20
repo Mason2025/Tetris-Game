@@ -157,19 +157,9 @@ def startingScreen():
 
 # screen that displays highscore and current score, waits for input to play again
 
-# Class for the game
-
-class Game(Frame):
-
-    def __init__(self, parent):
-        Frame.__init__(self,parent)
-
 # highscore and current score initialization
 highscore = 0
 currentScore = 0
-
-# tracks the locations of the blocks in the grid
-blockList = []
 
 # defining the grid
 def makeGrid(setPieces={}):
@@ -194,80 +184,9 @@ def showGrid(surface, row, col):
 # section of code devoted to input from buttons
         
 
-# classes for different shapes
-class Block():
-
-    # default block color
-    blockColor = ""
-    
-    
-    # Block constructor
-    def __init__(self, x1, y1, x2, y2):
-        # default block coordinates
-        self.blockX1 = 0
-        self.blockY1 = 0
-        self.blockX2 = 0
-        self.blockY2 = 0
-        # new block coordinates
-        self.blockX1 = x1
-        self.blockY1 = y1
-        self.blockX2 = x2
-        self.blockY2 = y2
-
-    # decorators for block coordinates
-    @property
-    def blockX1(self):
-        return self._blockX1
-    
-    @blockX1.setter
-    def blockX1(self, value):
-        self._blockX1 = value
-
-    @property
-    def blockY1(self):
-        return self._blockY1
-    
-    @blockY1.setter
-    def blockY1(self, value):
-        self._blockY1 = value
-
-    @property
-    def blockX2(self):
-        return self._blockX2
-    
-    @blockX2.setter
-    def blockX2(self, value):
-        self._blockX2 = value
-
-    @property
-    def blockY2(self):
-        return self._blockY2
-    
-    @blockY2.setter
-    def blockY2(self, value):
-        self._blockY2 = value
-        
-    #def moveDown(self):
-        
-    #def moveLeft(self):
-
-    #def moveright(self):
-
-    #def rotate(self):
-        
 #create window
 window = Tk()
 window.title("Tetris")
-
-# creating the grid
-s = GridSystem(window)
-
-s.plotGrid()
-
-# colors a block
-s.colorBlock(5, blockList[5].blockX1, blockList[5].blockY1,
-             blockList[5].blockX2, blockList[5].blockY2 - 20, "red")
-
 
 
 
