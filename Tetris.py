@@ -141,6 +141,19 @@ class Piece(object):
 
 
 # start screen that awaits input to begin the game
+def startingScreen():
+    run = True
+    while run:
+        win.fill((0,0,0))
+        titleScreen('Press to start!', 80, "red", win)
+        pygame.display.update()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+ 
+            if event.type == pygame.KEYDOWN:
+                main()
+    pygame.quit()
 
 # screen that displays highscore and current score, waits for input to play again
 
@@ -158,105 +171,25 @@ currentScore = 0
 # tracks the locations of the blocks in the grid
 blockList = []
 
-# the layout of the grid
-class GridSystem(Canvas):
-
-    def __init__(self, master):
-        Canvas.__init__(self, master)
-        self.pack(expand=1, fill=BOTH)
-
-    def plotGrid(self):
-        i = 20
-        y = 40
-        # 1
-        while (i > 0):
-            # creates a block to be seen
-            self.create_rectangle(20, 20, 40, y, outline = "black", fill = "")
-            # registers that block in blockList
-            blockList.append(Block(20, 20, 40, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 2
-        while (i > 0):
-            self.create_rectangle(40, 20, 60, y, outline = "black", fill = "")
-            blockList.append(Block(40, 20, 60, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 3
-        while (i > 0):
-            self.create_rectangle(60, 20, 80, y, outline = "black", fill = "")
-            blockList.append(Block(60, 20, 80, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 4
-        while (i > 0):
-            self.create_rectangle(80, 20, 100, y, outline = "black", fill = "")
-            blockList.append(Block(80, 20, 100, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 5
-        while (i > 0):
-            self.create_rectangle(100, 20, 120, y, outline = "black", fill = "")
-            blockList.append(Block(100, 20, 120, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 6
-        while (i > 0):
-            self.create_rectangle(120, 20, 140, y, outline = "black", fill = "")
-            blockList.append(Block(120, 20, 140, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 7
-        while (i > 0):
-            self.create_rectangle(140, 20, 160, y, outline = "black", fill = "")
-            blockList.append(Block(140, 20, 160, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 8
-        while (i > 0):
-            self.create_rectangle(160, 20, 180, y, outline = "black", fill = "")
-            blockList.append(Block(160, 20, 180, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 9
-        while (i > 0):
-            self.create_rectangle(180, 20, 200, y, outline = "black", fill = "")
-            blockList.append(Block(180, 20, 200, y))
-            y += 20
-            i -=1
-        i = 20
-        y = 40
-        # 10
-        while (i > 0):
-            self.create_rectangle(200, 20, 220, y, outline = "black", fill = "")
-            blockList.append(Block(200, 20, 220, y))
-            y += 20
-            i -=1
-            
-    # colors a block
-    def colorBlock(self, i, x1, y1, x2, y2, color):
-        blockList[i].blockColor = color
-        self.create_rectangle(x1, y1, x2, y2, outline = "black", fill = color)
-
-    #def blockFall():
-        
-    
+# defining the grid
+def makeGrid(setPieces={}):
+    grid = [[(0,0,0) for x in range(10)] for x in range(20)]
+ 
+    for i in range(len(grid)):
+        for j in range(len(grid[i])):
+            if (j,i) in setPieces:
+                c = setPieces[(j,i)]
+                grid[i][j] = c
+    return grid
+ 
+# create the grid taht was defined
+def showGrid(surface, row, col):
+    sx = upperLeftX
+    sy = upperLeftY
+    for i in range(row):
+        pygame.draw.line(surface, (128,128,128), (sx, sy+ i*30), (sx + gridWidth, sy + i * 30))  # horizontal lines
+        for j in range(col):
+            pygame.draw.line(surface, (128,128,128), (sx + j * 30, sy), (sx + j * 30, sy + gridHeight))  # vertical lines
 
 # section of code devoted to input from buttons
         
