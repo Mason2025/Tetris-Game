@@ -1,15 +1,143 @@
 # Team: 8-bit
 # Members: Mason, David, Casey, Logan
 
-# importing Tkinter's methods and variables
-from tkinter import *
+# importing pygame
+import pygame
 # importing random
 import random
 
+# global variables
+# parameters for the screen and grid
+screenWidth = 800
+screenHeight = 700
+gridWidth = 300  
+gridHeight = 600  
+blockSize = 30
+upperLeftX = (screenWidth - gridWidth) // 2
+upperLeftY = screenHeight - gridHeight
+
+# shapes and rotations
+ 
+S = [['.....',
+      '.....',
+      '..00.',
+      '.00..',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..00.',
+      '...0.',
+      '.....']]
+ 
+Z = [['.....',
+      '.....',
+      '.00..',
+      '..00.',
+      '.....'],
+     ['.....',
+      '..0..',
+      '.00..',
+      '.0...',
+      '.....']]
+ 
+I = [['..0..',
+      '..0..',
+      '..0..',
+      '..0..',
+      '.....'],
+     ['.....',
+      '0000.',
+      '.....',
+      '.....',
+      '.....']]
+ 
+O = [['.....',
+      '.....',
+      '.00..',
+      '.00..',
+      '.....']]
+ 
+J = [['.....',
+      '.0...',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..00.',
+      '..0..',
+      '..0..',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '...0.',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..0..',
+      '.00..',
+      '.....']]
+ 
+L = [['.....',
+      '...0.',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..0..',
+      '..00.',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '.0...',
+      '.....'],
+     ['.....',
+      '.00..',
+      '..0..',
+      '..0..',
+      '.....']]
+ 
+T = [['.....',
+      '..0..',
+      '.000.',
+      '.....',
+      '.....'],
+     ['.....',
+      '..0..',
+      '..00.',
+      '..0..',
+      '.....'],
+     ['.....',
+      '.....',
+      '.000.',
+      '..0..',
+      '.....'],
+     ['.....',
+      '..0..',
+      '.00..',
+      '..0..',
+      '.....']]
 
 
-shapes = {"Square":[(-1,-1),(0,-1),(0,0),(-1,0)]}
-shapeColor = {"Square":"blue"}
+# parallel list of shapes and their colors
+shapes = [S, Z, I, O, J, L, T]
+shape_colors = ["blue", "cyan", "orange", "yellow", "purple", "white", "red"]
+
+# the pieces in play
+class Piece(object):
+    # y
+    rows = 20
+    # x
+    columns = 10  
+ 
+    def __init__(self, column, row, shape):
+        self.x = column
+        self.y = row
+        self.shape = shape
+        self.color = shape_colors[shapes.index(shape)]
+        self.rotation = 0
 
 
 # start screen that awaits input to begin the game
