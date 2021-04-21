@@ -139,8 +139,21 @@ class Piece(object):
         self.color = shape_colors[shapes.index(shape)]
         self.rotation = 0
 
+# display the given message (Used for game over)
+def message(text, size, color, surface):
+    font = pygame.font.SysFont('timesnewroman', size, bold=True)
+    label = font.render(text, 1, color)
+ 
+    surface.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
 
 # start screen that awaits input to begin the game
+def titleScreen(text, size, color, surface):
+    font = pygame.font.SysFont('timesnewroman', size)
+    label = font.render(text, 1, color)
+ 
+    surface.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
+
+# displaying the title screen
 def startingScreen():
     run = True
     while run:
