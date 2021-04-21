@@ -6,6 +6,9 @@ import pygame
 # importing random
 import random
 
+# fonts for the words printed to the screen
+pygame.font.init()
+
 # global variables
 # parameters for the screen and grid
 screenWidth = 800
