@@ -232,13 +232,5 @@ def createWindow(surface):
     pygame.draw.rect(surface, "white", (upperLeftX, upperLeftY, gridWidth, gridHeight), 5)
 
 
-# section of code devoted to input from buttons
+
         
-
-#create window
-window = Tk()
-window.title("Tetris")
-
-
-
-window.mainloop()
