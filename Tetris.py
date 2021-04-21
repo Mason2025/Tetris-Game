@@ -158,6 +158,27 @@ def rotateShape(shape):
  
     return positions
 
+# check to see if the space can be used
+def openSpace(shape, grid):
+    allowedPositions = [[(j, i) for j in range(10) if grid[i][j] == (0,0,0)] for i in range(20)]
+    allowedPositions = [j for sub in allowedPositions for j in sub]
+    formatted = rotateShape(shape)
+ 
+    for pos in formatted:
+        if pos not in allowedPositions:
+            if pos[1] > -1:
+                return False
+ 
+    return True
+ 
+# see if the shape is missing
+def shapeCheck(positions):
+    for pos in positions:
+        x, y = pos
+        if y < 1:
+            return True
+    return False
+
 
 # display the given message (Used for game over)
 def message(text, size, color, surface):
