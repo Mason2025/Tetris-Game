@@ -257,6 +257,37 @@ def createWindow(surface):
     showGrid(surface, 20, 10)
     pygame.draw.rect(surface, "white", (upperLeftX, upperLeftY, gridWidth, gridHeight), 5)
 
+# the main function which houses the game loop
+def main(): 
+    global grid
+
+    # pieces that won't move
+    setPieces = {}
+    grid = makeGrid(setPieces)
+ 
+    changePiece = False
+    run = True
+    movingPiece = getShape()
+    newPiece = getShape()
+    clock = pygame.time.Clock()
+    dropTime = 0
+ 
+    while run:
+        dropSpeed = 0.3
+ 
+        grid = makeGrid(setPieces)
+        dropTime += clock.get_rawtime()
+        clock.tick()
+ 
+        # falling pieces
+        if dropTime/1000 >= dropSpeed:
+            dropTime = 0
+            movingPiece.y += 1
+            if not (openSpace(movingPiece, grid)) and movingPiece.y > 0:
+                movingPiece.y -= 1
+                changePiece = True
+        # code involving player input
+
 
 win = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption('Tetris')
