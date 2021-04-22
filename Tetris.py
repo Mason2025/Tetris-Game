@@ -179,6 +179,11 @@ def shapeCheck(positions):
             return True
     return False
 
+# one of the shapes and its color
+def getShape():
+    global shapes, shape_colors
+ 
+    return Piece(5, 0, random.choice(shapes))
 
 # display the given message (Used for game over)
 def message(text, size, color, surface):
@@ -253,5 +258,8 @@ def createWindow(surface):
     pygame.draw.rect(surface, "white", (upperLeftX, upperLeftY, gridWidth, gridHeight), 5)
 
 
-
+win = pygame.display.set_mode((screenWidth, screenHeight))
+pygame.display.set_caption('Tetris')
+ 
+startingScreen()  # start game
         
