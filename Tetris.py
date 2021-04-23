@@ -185,6 +185,15 @@ def getShape():
  
     return Piece(5, 0, random.choice(shapes))
 
+# defines the next shape to be sent
+def makeNextShape(shape):
+    sx = upperLeftX + gridWidth + 50
+    sy = upperLeftY + gridHeight/2 - 100
+    format = shape.shape[shape.rotation % len(shape.shape)]
+ 
+    for i, line in enumerate(format):
+        row = list(line)
+
 # display the given message (Used for game over)
 def message(text, size, color, surface):
     font = pygame.font.SysFont('timesnewroman', size, bold=True)
@@ -239,6 +248,9 @@ def showGrid(surface, row, col):
         pygame.draw.line(surface, (128,128,128), (sx, sy+ i*30), (sx + gridWidth, sy + i * 30))  # horizontal lines
         for j in range(col):
             pygame.draw.line(surface, (128,128,128), (sx + j * 30, sy), (sx + j * 30, sy + gridHeight))  # vertical lines
+
+# remove blocks after a row is filled
+def clearBlocks
 
 # define the window
 def createWindow(surface):
@@ -325,6 +337,20 @@ def main():
             movingPiece = newPiece
             newPiece = getShape()
             changePiece = False
+
+            # clearing of blocks called here
+
+        createWindow(win)
+        makeNextShape(newPiece)
+        pygame.display.update()
+ 
+        # Check if user lost
+        if shapeCheck(setPieces):
+            run = False
+ 
+    message("Game Over", 40, "green", win)
+    pygame.display.update()
+    pygame.time.delay(2000)
 
 
 win = pygame.display.set_mode((screenWidth, screenHeight))
