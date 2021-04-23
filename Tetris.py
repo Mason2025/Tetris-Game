@@ -287,6 +287,44 @@ def main():
                 movingPiece.y -= 1
                 changePiece = True
         # code involving player input
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+                pygame.display.quit()
+                quit()
+ 
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    movingPiece.x -= 1
+                    if not openSpace(movingPiece, grid):
+                        movingPiece.x += 1
+ 
+                elif event.key == pygame.K_RIGHT:
+                    movingPiece.x += 1
+                    if not openSpace(movingPiece, grid):
+                        movingPiece.x -= 1
+                elif event.key == pygame.K_UP:
+                    # rotate shape
+                    movingPiece.rotation = movingPiece.rotation + 1 % len(movingPiece.shape)
+                    if not openSpace(movingPiece, grid):
+                        movingPiece.rotation = movingPiece.rotation - 1 % len(movingPiece.shape)
+
+        position = rotateShape(movingPiece)
+
+        # add the moving piece to the grid
+        for i in range(len(position)):
+            x, y = position[i]
+            if y > -1:
+                grid[y][x] = movingPiece.color
+ 
+        # contact with bottom
+        if changePiece:
+            for pos in position:
+                p = (pos[0], pos[1])
+                setPieces[p] = movingPiece.color
+            movingPiece = newPiece
+            newPiece = getShape()
+            changePiece = False
 
 
 win = pygame.display.set_mode((screenWidth, screenHeight))
