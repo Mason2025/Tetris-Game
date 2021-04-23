@@ -250,7 +250,26 @@ def showGrid(surface, row, col):
             pygame.draw.line(surface, (128,128,128), (sx + j * 30, sy), (sx + j * 30, sy + gridHeight))  # vertical lines
 
 # remove blocks after a row is filled
-def clearBlocks
+def clearBlocks(grid, piecesSet):
+
+    counter1 = 0
+    for i in range(len(grid)-1,-1,-1):
+        row = grid[i]
+        if (0, 0, 0) not in row:
+            counter1 += 1
+            # positions get removed from setPieces
+            counter2 = i
+            for j in range(len(row)):
+                try:
+                    del piecesSet[(j, i)]
+                except:
+                    continue
+    if counter1 > 0:
+        for key in sorted(list(piecesSet), key=lambda x: x[1])[::-1]:
+            x, y = key
+            if y < counter2:
+                newKey = (x, y + counter1)
+                piecesSet[newKey] = piecesSet.pop(key)
 
 # define the window
 def createWindow(surface):
@@ -339,6 +358,7 @@ def main():
             changePiece = False
 
             # clearing of blocks called here
+            clearBlocks(grid, setPieces)
 
         createWindow(win)
         makeNextShape(newPiece)
