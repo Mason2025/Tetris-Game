@@ -9,7 +9,6 @@ import random
 # fonts for the words printed to the screen
 pygame.font.init()
 
-# global variables
 # parameters for the screen and grid
 screenWidth = 800
 screenHeight = 700
@@ -223,11 +222,7 @@ def startingScreen():
                 main()
     pygame.quit()
 
-# screen that displays highscore and current score, waits for input to play again
 
-# highscore and current score initialization
-highscore = 0
-currentScore = 0
 
 # defining the grid
 def makeGrid(setPieces={}):
@@ -250,8 +245,9 @@ def showGrid(surface, row, col):
             pygame.draw.line(surface, (128,128,128), (sx + j * 30, sy), (sx + j * 30, sy + gridHeight))  # vertical lines
 
 # remove blocks after a row is filled
-def clearBlocks(grid, piecesSet):
+def clearBlocks(grid, piecesSet, currentScore):
 
+    score = currentScore
     counter1 = 0
     for i in range(len(grid)-1,-1,-1):
         row = grid[i]
@@ -262,14 +258,19 @@ def clearBlocks(grid, piecesSet):
             for j in range(len(row)):
                 try:
                     del piecesSet[(j, i)]
+                    score += 10
                 except:
                     continue
+    
     if counter1 > 0:
         for key in sorted(list(piecesSet), key=lambda x: x[1])[::-1]:
             x, y = key
             if y < counter2:
                 newKey = (x, y + counter1)
                 piecesSet[newKey] = piecesSet.pop(key)
+            
+
+    return score
 
 # define the window
 def createWindow(surface):
@@ -288,6 +289,8 @@ def createWindow(surface):
     showGrid(surface, 20, 10)
     pygame.draw.rect(surface, "white", (upperLeftX, upperLeftY, gridWidth, gridHeight), 5)
 
+highScore = 0
+
 # the main function which houses the game loop
 def main(): 
     global grid
@@ -302,6 +305,8 @@ def main():
     newPiece = getShape()
     clock = pygame.time.Clock()
     dropTime = 0
+    currentScore = 0
+    global highScore
  
     while run:
         dropSpeed = 0.3
@@ -358,7 +363,7 @@ def main():
             changePiece = False
 
             # clearing of blocks called here
-            clearBlocks(grid, setPieces)
+            currentScore = clearBlocks(grid, setPieces, currentScore)
 
         createWindow(win)
         makeNextShape(newPiece)
@@ -367,7 +372,8 @@ def main():
         # Check if user lost
         if shapeCheck(setPieces):
             run = False
- 
+    if (currentScore > highScore):
+        highScore = currentScore
     message("Game Over", 40, "green", win)
     pygame.display.update()
     pygame.time.delay(2000)
@@ -375,6 +381,7 @@ def main():
 
 win = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption('Tetris')
- 
+
+
 startingScreen()  # start game
         
