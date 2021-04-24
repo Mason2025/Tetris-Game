@@ -273,13 +273,30 @@ def clearBlocks(grid, piecesSet, currentScore):
     return score
 
 # define the window
-def createWindow(surface):
+def createWindow(surface, score, hScore):
     surface.fill("black")
     # Tetris Title
     font = pygame.font.SysFont('timesnewroman', 60)
     label = font.render('TETRIS', 1, "red")
- 
     surface.blit(label, (upperLeftX + gridWidth / 2 - (label.get_width() / 2), 30))
+
+    # high score on screen
+    font = pygame.font.SysFont('timesnewroman', 30)
+    label = font.render('High Score', 1, "orange")
+    surface.blit(label, (upperLeftX + gridWidth + (label.get_width() /2), 30))
+
+    font = pygame.font.SysFont('timesnewroman', 30)
+    label = font.render(str(hScore), 1, "white")
+    surface.blit(label, (upperLeftX + 370, 60))
+
+    # current score on screen
+    font = pygame.font.SysFont('timesnewroman', 30)
+    label = font.render('Your Score', 1, "orange")
+    surface.blit(label, (upperLeftX  - (label.get_width() *1.5), 30))
+
+    font = pygame.font.SysFont('timesnewroman', 30)
+    label = font.render(str(score), 1, "white")
+    surface.blit(label, (upperLeftX  - 200, 60))
  
     for i in range(len(grid)):
         for j in range(len(grid[i])):
@@ -362,10 +379,10 @@ def main():
             newPiece = getShape()
             changePiece = False
 
-            # clearing of blocks called here
+            # clearing of blocks called here (also updates score)
             currentScore = clearBlocks(grid, setPieces, currentScore)
 
-        createWindow(win)
+        createWindow(win, currentScore, highScore)
         makeNextShape(newPiece)
         pygame.display.update()
  
