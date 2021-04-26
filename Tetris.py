@@ -310,8 +310,10 @@ highScore = 0
 
 
 # the main function which houses the game loop
-def main(): 
+def main():
+    
     global grid
+    global highScore
 
     # pieces that won't move
     setPieces = {}
@@ -324,7 +326,7 @@ def main():
     clock = pygame.time.Clock()
     dropTime = 0
     currentScore = 0
-    global highScore
+    
  
     while run:
         dropSpeed = 0.3
