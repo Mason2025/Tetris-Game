@@ -197,7 +197,6 @@ def makeNextShape(shape):
 def titleScreen(text, size, color, surface):
     font = pygame.font.SysFont('timesnewroman', size)
     label = font.render(text, 1, color)
- 
     surface.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
 
 # displaying the title screen
@@ -216,7 +215,6 @@ def startingScreen():
     pygame.quit()
 
 
-
 # defining the grid
 def makeGrid(setPieces={}):
     grid = [[(0,0,0) for x in range(10)] for x in range(20)]
@@ -233,9 +231,11 @@ def showGrid(surface, row, col):
     sx = upperLeftX
     sy = upperLeftY
     for i in range(row):
-        pygame.draw.line(surface, (128,128,128), (sx, sy+ i*30), (sx + gridWidth, sy + i * 30))  # horizontal lines
+        # creates horizontal lines
+        pygame.draw.line(surface, (128,128,128), (sx, sy+ i*30), (sx + gridWidth, sy + i * 30))  
         for j in range(col):
-            pygame.draw.line(surface, (128,128,128), (sx + j * 30, sy), (sx + j * 30, sy + gridHeight))  # vertical lines
+            # creates vertical lines
+            pygame.draw.line(surface, (128,128,128), (sx + j * 30, sy), (sx + j * 30, sy + gridHeight))  
 
 # remove blocks after a row is filled
 def clearBlocks(grid, piecesSet, currentScore):
@@ -246,15 +246,17 @@ def clearBlocks(grid, piecesSet, currentScore):
         row = grid[i]
         if (0, 0, 0) not in row:
             counter1 += 1
-            # positions get removed from setPieces
+            # pieces get removed from setPieces
             counter2 = i
             for j in range(len(row)):
                 try:
                     del piecesSet[(j, i)]
+                    # incrementation to the current score
                     score += 10
                 except:
                     continue
-    
+
+    # moves the pieces down after the row below them is cleared
     if counter1 > 0:
         for key in sorted(list(piecesSet), key=lambda x: x[1])[::-1]:
             x, y = key
@@ -268,25 +270,28 @@ def clearBlocks(grid, piecesSet, currentScore):
 # define the window
 def createWindow(surface, score, hScore):
     surface.fill("black")
+
     # Tetris Title
     font = pygame.font.SysFont('timesnewroman', 60)
     label = font.render('TETRIS', 1, "red")
     surface.blit(label, (upperLeftX + gridWidth / 2 - (label.get_width() / 2), 30))
 
-    # high score on screen
+    # the words "High Score" on screen
     font = pygame.font.SysFont('timesnewroman', 30)
     label = font.render('High Score', 1, "orange")
     surface.blit(label, (upperLeftX + gridWidth + (label.get_width() /2), 30))
 
+    # the high score as a number on the screen
     font = pygame.font.SysFont('timesnewroman', 30)
     label = font.render(str(hScore), 1, "white")
     surface.blit(label, (upperLeftX + 370, 60))
 
-    # current score on screen
+    # the words "Your Score" on screen
     font = pygame.font.SysFont('timesnewroman', 30)
     label = font.render('Your Score', 1, "orange")
     surface.blit(label, (upperLeftX  - (label.get_width() *1.5), 30))
 
+    # the current score as a number on the screen
     font = pygame.font.SysFont('timesnewroman', 30)
     label = font.render(str(score), 1, "white")
     surface.blit(label, (upperLeftX  - 200, 60))
@@ -299,7 +304,10 @@ def createWindow(surface, score, hScore):
     showGrid(surface, 20, 10)
     pygame.draw.rect(surface, "white", (upperLeftX, upperLeftY, gridWidth, gridHeight), 5)
 
+# initializing the high score
 highScore = 0
+
+
 
 # the main function which houses the game loop
 def main(): 
@@ -375,6 +383,7 @@ def main():
             # clearing of blocks called here (also updates score)
             currentScore = clearBlocks(grid, setPieces, currentScore)
 
+        
         createWindow(win, currentScore, highScore)
         makeNextShape(newPiece)
         pygame.display.update()
@@ -382,6 +391,8 @@ def main():
         # Check if user lost
         if shapeCheck(setPieces):
             run = False
+            
+    # update the high score
     if (currentScore > highScore):
         highScore = currentScore
 
@@ -389,6 +400,7 @@ def main():
     font = pygame.font.SysFont('timesnewroman', 40, bold=True)
     label = font.render("Game Over", 1, "green")
     win.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
+
 
     pygame.display.update()
     pygame.time.delay(2000)
