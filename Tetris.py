@@ -122,10 +122,16 @@ T = [['.....',
       '..0..',
       '.....']]
 
+X = [['.....',
+      '..0..',
+      '.000.',
+      '..0..',
+      '.....']]
+
 
 # parallel list of shapes and their colors
-shapes = [S, Z, I, O, J, L, T]
-shape_colors = ["blue", "cyan", "orange", "yellow", "purple", "white", "red"]
+shapes = [S, Z, I, O, J, L, T, X]
+shape_colors = ["blue", "cyan", "orange", "yellow", "purple", "white", "red", "pink"]
 
 # the pieces in play
 class Piece(object):
