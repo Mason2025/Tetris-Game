@@ -193,13 +193,6 @@ def makeNextShape(shape):
     for i, line in enumerate(format):
         row = list(line)
 
-# display the given message (Used for game over)
-def message(text, size, color, surface):
-    font = pygame.font.SysFont('timesnewroman', size, bold=True)
-    label = font.render(text, 1, color)
- 
-    surface.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
-
 # start screen that awaits input to begin the game
 def titleScreen(text, size, color, surface):
     font = pygame.font.SysFont('timesnewroman', size)
@@ -235,7 +228,7 @@ def makeGrid(setPieces={}):
                 grid[i][j] = c
     return grid
  
-# create the grid taht was defined
+# create the grid that was defined
 def showGrid(surface, row, col):
     sx = upperLeftX
     sy = upperLeftY
@@ -391,7 +384,12 @@ def main():
             run = False
     if (currentScore > highScore):
         highScore = currentScore
-    message("Game Over", 40, "green", win)
+
+    # game over message
+    font = pygame.font.SysFont('timesnewroman', 40, bold=True)
+    label = font.render("Game Over", 1, "green")
+    win.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
+
     pygame.display.update()
     pygame.time.delay(2000)
 
