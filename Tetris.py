@@ -166,7 +166,7 @@ def rotateShape(shape):
     for i, line in enumerate(shape.shape[shape.rotation % len(shape.shape)]):
         row = list(line)
         for j, column in enumerate(row):
-            if column == '0':
+            if (column == '0'):
                 positions.append((shape.x + j, shape.y + i))
  
     for i, pos in enumerate(positions):
@@ -181,8 +181,8 @@ def openSpace(shape, grid):
     formatted = rotateShape(shape)
  
     for pos in formatted:
-        if pos not in allowedPositions:
-            if pos[1] > -1:
+        if (pos not in allowedPositions):
+            if (pos[1] > -1):
                 return False
  
     return True
@@ -191,7 +191,7 @@ def openSpace(shape, grid):
 def shapeCheck(positions):
     for pos in positions:
         x, y = pos
-        if y < 1:
+        if (y < 1):
             return True
     return False
 
@@ -230,17 +230,17 @@ def conScreen(window):
 # displaying the title screen
 def startingScreen():
     run = True
-    while run:
+    while (run):
         win.fill((0,0,0))
         # displaying the initial input prompt
         titleScreen('Press to start!', 80, "red", win)
         pygame.display.update()
         
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if (event.type == pygame.QUIT):
                 run = False
  
-            if event.type == pygame.KEYDOWN:
+            if (event.type == pygame.KEYDOWN):
                 win.fill((0,0,0))
                 # controls displayed after button press
                 conScreen(win)
@@ -256,7 +256,7 @@ def makeGrid(setPieces={}):
  
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            if (j,i) in setPieces:
+            if ((j,i) in setPieces):
                 c = setPieces[(j,i)]
                 grid[i][j] = c
     return grid
@@ -279,7 +279,7 @@ def clearBlocks(grid, piecesSet, currentScore):
     counter1 = 0
     for i in range(len(grid)-1,-1,-1):
         row = grid[i]
-        if (0, 0, 0) not in row:
+        if ((0, 0, 0) not in row):
             counter1 += 1
             # pieces get removed from setPieces
             counter2 = i
@@ -292,10 +292,10 @@ def clearBlocks(grid, piecesSet, currentScore):
                     continue
 
     # moves the pieces down after the row below them is cleared
-    if counter1 > 0:
+    if (counter1 > 0):
         for key in sorted(list(piecesSet), key=lambda x: x[1])[::-1]:
             x, y = key
-            if y < counter2:
+            if (y < counter2):
                 newKey = (x, y + counter1)
                 piecesSet[newKey] = piecesSet.pop(key)
             
@@ -371,7 +371,7 @@ def main():
         clock.tick()
  
         # falling pieces
-        if dropTime/1000 >= dropSpeed:
+        if (dropTime/1000 >= dropSpeed):
             dropTime = 0
             movingPiece.y += 1
             if not (openSpace(movingPiece, grid)) and movingPiece.y > 0:
@@ -379,25 +379,25 @@ def main():
                 changePiece = True
         # code involving player input
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if (event.type == pygame.QUIT):
                 run = False
                 pygame.display.quit()
                 quit()
  
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+            if (event.type == pygame.KEYDOWN):
+                if (event.key == pygame.K_LEFT):
                     movingPiece.x -= 1
-                    if not openSpace(movingPiece, grid):
+                    if not (openSpace(movingPiece, grid)):
                         movingPiece.x += 1
  
-                elif event.key == pygame.K_RIGHT:
+                elif (event.key == pygame.K_RIGHT):
                     movingPiece.x += 1
-                    if not openSpace(movingPiece, grid):
+                    if not (openSpace(movingPiece, grid)):
                         movingPiece.x -= 1
-                elif event.key == pygame.K_UP:
+                elif (event.key == pygame.K_UP):
                     # rotate shape
                     movingPiece.rotation = movingPiece.rotation + 1 % len(movingPiece.shape)
-                    if not openSpace(movingPiece, grid):
+                    if not (openSpace(movingPiece, grid)):
                         movingPiece.rotation = movingPiece.rotation - 1 % len(movingPiece.shape)
 
         position = rotateShape(movingPiece)
@@ -409,7 +409,7 @@ def main():
                 grid[y][x] = movingPiece.color
  
         # contact with bottom
-        if changePiece:
+        if (changePiece):
             for pos in position:
                 p = (pos[0], pos[1])
                 setPieces[p] = movingPiece.color
@@ -426,7 +426,7 @@ def main():
         pygame.display.update()
  
         # Check if user lost
-        if shapeCheck(setPieces):
+        if (shapeCheck(setPieces)):
             run = False
             
     # update the high score
