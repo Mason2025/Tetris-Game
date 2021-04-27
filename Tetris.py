@@ -128,10 +128,21 @@ X = [['.....',
       '..0..',
       '.....']]
 
+H = [['.....',
+      '.000.',
+      '..0..',
+      '.000.',
+      '.....'],
+     ['.....',
+      '.0.0.',
+      '.000.',
+      '.0.0.',
+      '.....']]
+
 
 # parallel list of shapes and their colors
-shapes = [S, Z, I, O, J, L, T, X]
-shape_colors = ["blue", "cyan", "orange", "yellow", "purple", "white", "red", "pink"]
+shapes = [S, Z, I, O, J, L, T, X, H]
+shape_colors = ["blue", "cyan", "orange", "yellow", "purple", "white", "red", "pink", "brown"]
 
 # the pieces in play
 class Piece(object):
@@ -150,9 +161,9 @@ class Piece(object):
 # rotating shapes
 def rotateShape(shape):
     positions = []
-    format = shape.shape[shape.rotation % len(shape.shape)]
+    #format = shape.shape[shape.rotation % len(shape.shape)]
  
-    for i, line in enumerate(format):
+    for i, line in enumerate(shape.shape[shape.rotation % len(shape.shape)]):
         row = list(line)
         for j, column in enumerate(row):
             if column == '0':
@@ -194,9 +205,9 @@ def getShape():
 def makeNextShape(shape):
     sx = upperLeftX + gridWidth + 50
     sy = upperLeftY + gridHeight/2 - 100
-    format = shape.shape[shape.rotation % len(shape.shape)]
+    #format = shape.shape[shape.rotation % len(shape.shape)]
  
-    for i, line in enumerate(format):
+    for i, line in enumerate(shape.shape[shape.rotation % len(shape.shape)]):
         row = list(line)
 
 # start screen that awaits input to begin the game
@@ -427,14 +438,14 @@ def main():
     label = font.render("Game Over", 1, "green")
     win.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
 
-
+    
     pygame.display.update()
     pygame.time.delay(2000)
 
-
+# defining the window
 win = pygame.display.set_mode((screenWidth, screenHeight))
 pygame.display.set_caption('Tetris')
 
-
-startingScreen()  # start game
+# starting the game
+startingScreen()  
         
