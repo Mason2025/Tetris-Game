@@ -200,23 +200,41 @@ def makeNextShape(shape):
         row = list(line)
 
 # start screen that awaits input to begin the game
-def titleScreen(text, size, color, surface):
+def titleScreen(text, size, color, window):
     font = pygame.font.SysFont('timesnewroman', size)
     label = font.render(text, 1, color)
-    surface.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
+    window.blit(label, (upperLeftX + gridWidth/2 - (label.get_width() / 2), upperLeftY + gridHeight/2 - label.get_height()/2))
+
+# displays the controls
+def conScreen(window):
+    font = pygame.font.SysFont('timesnewroman', 40)
+    label1 = font.render("Press left button to move piece left", 1, "white")
+    label2 = font.render("Press right button to move piece right", 1, "white")
+    label3 = font.render("Press middle button to rotate piece", 1, "white")
+
+    window.blit(label1, (upperLeftX + gridWidth/2 - (label1.get_width() / 2), upperLeftY + gridHeight/2 - label1.get_height()*2))
+    window.blit(label2, (upperLeftX + gridWidth/2 - (label2.get_width() / 2), upperLeftY + gridHeight/2 - label2.get_height()*3))
+    window.blit(label3, (upperLeftX + gridWidth/2 - (label3.get_width() / 2), upperLeftY + gridHeight/2 - label3.get_height()))
 
 # displaying the title screen
 def startingScreen():
     run = True
     while run:
         win.fill((0,0,0))
+        # displaying the initial input prompt
         titleScreen('Press to start!', 80, "red", win)
         pygame.display.update()
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
  
             if event.type == pygame.KEYDOWN:
+                win.fill((0,0,0))
+                # controls displayed after button press
+                conScreen(win)
+                pygame.display.update()
+                pygame.time.delay(4000)
                 main()
     pygame.quit()
 
@@ -233,15 +251,15 @@ def makeGrid(setPieces={}):
     return grid
  
 # create the grid that was defined
-def showGrid(surface, row, col):
+def showGrid(window, row, col):
     sx = upperLeftX
     sy = upperLeftY
     for i in range(row):
         # creates horizontal lines
-        pygame.draw.line(surface, (128,128,128), (sx, sy+ i*30), (sx + gridWidth, sy + i * 30))  
+        pygame.draw.line(window, (128,128,128), (sx, sy+ i*30), (sx + gridWidth, sy + i * 30))  
         for j in range(col):
             # creates vertical lines
-            pygame.draw.line(surface, (128,128,128), (sx + j * 30, sy), (sx + j * 30, sy + gridHeight))  
+            pygame.draw.line(window, (128,128,128), (sx + j * 30, sy), (sx + j * 30, sy + gridHeight))  
 
 # remove blocks after a row is filled
 def clearBlocks(grid, piecesSet, currentScore):
@@ -274,41 +292,41 @@ def clearBlocks(grid, piecesSet, currentScore):
     return score
 
 # define the window
-def createWindow(surface, score, hScore):
-    surface.fill("black")
+def createWindow(window, score, hScore):
+    window.fill("black")
 
     # Tetris Title
     font = pygame.font.SysFont('timesnewroman', 60)
     label = font.render('TETRIS', 1, "red")
-    surface.blit(label, (upperLeftX + gridWidth / 2 - (label.get_width() / 2), 30))
+    window.blit(label, (upperLeftX + gridWidth / 2 - (label.get_width() / 2), 30))
 
     # the words "High Score" on screen
     font = pygame.font.SysFont('timesnewroman', 30)
     label = font.render('High Score', 1, "orange")
-    surface.blit(label, (upperLeftX + gridWidth + (label.get_width() /2), 30))
+    window.blit(label, (upperLeftX + gridWidth + (label.get_width() /2), 30))
 
     # the high score as a number on the screen
     font = pygame.font.SysFont('timesnewroman', 30)
     label = font.render(str(hScore), 1, "white")
-    surface.blit(label, (upperLeftX + 370, 60))
+    window.blit(label, (upperLeftX + 370, 60))
 
     # the words "Your Score" on screen
     font = pygame.font.SysFont('timesnewroman', 30)
     label = font.render('Your Score', 1, "orange")
-    surface.blit(label, (upperLeftX  - (label.get_width() *1.5), 30))
+    window.blit(label, (upperLeftX  - (label.get_width() *1.5), 30))
 
     # the current score as a number on the screen
     font = pygame.font.SysFont('timesnewroman', 30)
     label = font.render(str(score), 1, "white")
-    surface.blit(label, (upperLeftX  - 200, 60))
+    window.blit(label, (upperLeftX  - 200, 60))
  
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            pygame.draw.rect(surface, grid[i][j], (upperLeftX + j* 30, upperLeftY + i * 30, 30, 30), 0)
+            pygame.draw.rect(window, grid[i][j], (upperLeftX + j* 30, upperLeftY + i * 30, 30, 30), 0)
  
     # create grid
-    showGrid(surface, 20, 10)
-    pygame.draw.rect(surface, "white", (upperLeftX, upperLeftY, gridWidth, gridHeight), 5)
+    showGrid(window, 20, 10)
+    pygame.draw.rect(window, "white", (upperLeftX, upperLeftY, gridWidth, gridHeight), 5)
 
 # initializing the high score
 highScore = 0
