@@ -82,17 +82,6 @@ class GamePiece():
 
         for b in range(len(self.blocksInPiece)):
             blockList.append(self.blocksInPiece[b])
-##        b1 = Block(win, self.color, self.x1, self.y1)
-##        blockList.append(b1)
-##    
-##        b2 = Block(win, self.color, self.x2, self.y2)
-##        blockList.append(b2)
-##    
-##        b3 = Block(win, self.color, self.x3, self.y3)
-##        blockList.append(b3)
-##    
-##        b4 = Block(win, self.color, self.x4, self.y4)
-##        blockList.append(b4)
 
     def deleteBlock(self, y):
         tbc = []
@@ -187,62 +176,6 @@ def contactV(win, px1, py1, px2, py2, px3, py3, px4, py4, color):
             return True
     return False
 
-
-        
-
-##        for piece in range(len(frozenPieces)):
-##            if(frozenPieces[piece].x1 == px1 and frozenPieces[piece].y1 == py1 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x1 == px2 and frozenPieces[piece].y1 == py2 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x1 == px3 and frozenPieces[piece].y1 == py3 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x1 == px4 and frozenPieces[piece].y1 == py4 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##
-##            if(frozenPieces[piece].x2 == px1 and frozenPieces[piece].y2 == py1 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x2 == px2 and frozenPieces[piece].y2 == py2 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x2 == px3 and frozenPieces[piece].y2 == py3 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x2 == px4 and frozenPieces[piece].y2 == py4 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##
-##            if(frozenPieces[piece].x3 == px1 and frozenPieces[piece].y3 == py1 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x3 == px2 and frozenPieces[piece].y3 == py2 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x3 == px3 and frozenPieces[piece].y3 == py3 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x3 == px4 and frozenPieces[piece].y3 == py4 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##
-##            if(frozenPieces[piece].x4 == px1 and frozenPieces[piece].y4 == py1 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x4 == px2 and frozenPieces[piece].y4 == py2 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x4 == px3 and frozenPieces[piece].y4 == py3 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##            if(frozenPieces[piece].x4 == px4 and frozenPieces[piece].y4 == py4 + 20):
-##                if(frozenPieces[piece].color != (0,0,0)):
-##                    return True
-##        return False
 
 # stops pieces from moving sidways into eachother
 def contactS(win, px1, py1, px2, py2, px3, py3, px4, py4):
@@ -1193,56 +1126,13 @@ class RectangleChecker():
                 for p in range(len(tbc)):
                     if(tbc[p] in blockList):
                         blockList.remove(tbc[p])
-                        print("deleted")
                         s += 1
-                        #for f in range(len(frozenPieces)):
-                            #frozenPieces[f].deleteBlock(self.y)
 
                 for nb in range(len(blockList)):
                     if(blockList[nb].y < self.y):
                         blockList[nb].y += 20
                         
                 yourScore += 100
-
-
-##                for piece in range(len(frozenPieces)):
-##                    if(frozenPieces[piece].blocksInPiece[3].y == self.y):
-##                        frozenPieces[piece].remove(frozenPieces[piece].blocksInPiece[3])
-##
-##                    if(frozenPieces[piece].blocksInPiece[2].y == self.y):
-##                        frozenPieces[piece].remove(frozenPieces[piece].blocksInPiece[2])
-##
-##                    if(frozenPieces[piece].blocksInPiece[1].y == self.y):
-##                        frozenPieces[piece].remove(frozenPieces[piece].blocksInPiece[1])
-##
-##                    if(frozenPieces[piece].blocksInPiece[0].y == self.y):
-##                        frozenPieces[piece].remove(frozenPieces[piece].blocksInPiece[0])
-                            
-                            
-                        
-                    # if the block's y == self.y then the y of said block should be boosted exponentially
-                    # any following blocks get a much shorter boost (20 probably)
-
-##                for h in range(len(frozenPieces)):
-##                    if(len(frozenPieces[h].blocksInPiece) == 1):
-##                        if(frozenPieces[h].blocksInPiece[0].y > self.y):
-##                            frozenPieces[h].blocksInPiece[0].y += 20
-##                    if(len(frozenPieces[h].blocksInPiece) == 2):
-##                        if(frozenPieces[h].blocksInPiece[1].y > self.y):
-##                            frozenPieces[h].blocksInPiece[1].y += 20
-##                    if(len(frozenPieces[h].blocksInPiece) == 3):
-##                        if(frozenPieces[h].blocksInPiece[2].y > self.y):
-##                            frozenPieces[h].blocksInPiece[2].y += 20
-##                    if(len(frozenPieces[h].blocksInPiece) == 4):
-##                        if(frozenPieces[h].blocksInPiece[3].y > self.y):
-##                            frozenPieces[h].blocksInPiece[3].y += 20
-
-##                for piece in range(len(frozenPieces)):
-##                    for w in range(len(frozenPieces[piece].blocksInPiece)):
-##                        if(len(frozenPieces[piece].blocksInPiece) < w):
-##                            if(frozenPieces[piece].blocksInPiece[w].y == self.y):
-##                                frozenPieces[piece].blocksInPiece.remove(frozenPieces[piece].blocksInPiece[w])
-
                 
                 return True
                 
@@ -1267,14 +1157,6 @@ def checker(win, n):
 
     for c in range(len(checkers)):
         deleted = checkers[c].scan()
-
-##        if (deleted == True):
-##            for e in range(len(frozenPieces)):
-##                a = len(frozenPieces[e].blocksInPiece)
-##                while(a > 0):
-##                    if(frozenPieces[e].blocksInPiece[a].y == checkers[c].y):
-##                        frozenPieces[e].blocksInPiece[a].remove(blocksInPiece[a])
-##                    a -= 1
                 
 # the list of pieces to draw next
 pieceList = [ZPiece, TPiece, SPiece, OPiece, LPiece, JPiece, IPiece]
@@ -1336,10 +1218,8 @@ def screen(win, i, j, n, r):
 
 
     pygame.display.update()
-    # speed at which pieces fall
+
     pygame.time.delay(250)
-    
-    #pygame.display.update()
 
     return borders
 
