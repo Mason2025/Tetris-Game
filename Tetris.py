@@ -1,5 +1,15 @@
 import pygame
 import random
+import RPi.GPIO as GPIO
+
+# GPIO stuff
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(19, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.add_event_detect(18, GPIO.RISING)
+GPIO.add_event_detect(19, GPIO.RISING)
+GPIO.add_event_detect(24, GPIO.RISING)
 
 # defining the window in pygame
 win = pygame.display.set_mode((480, 800))
@@ -1238,26 +1248,21 @@ def gameLoop():
         while(True):
             border = screen(win, i, j, n, r)
             # player input checking
-            for event in pygame.event.get():
-                if (event.type == pygame.KEYDOWN):
-                    if (event.key == pygame.K_RIGHT and j < border[0] and i < 340):
-                        if (border[1] != 0):
-                            j += 20
-                    elif (event.key == pygame.K_LEFT and j > 0  and i < 340):
-                        if (border[1] != 0):
-                            j -= 20
-                    elif (event.key == pygame.K_UP):
-                        if (border[1] != 0):
-                            if (n == 1 and j > 150):
-                                if(r == 1 or r == 3):
-                                    r -= 1
-                            r += 1
-                            if (r >= 4):
-                                r = 0
-                    elif (event.key == pygame.K_DOWN):
-                        run = False
-                        pygame.display.quit()
-                        quit()
+           
+            if (GPIO.event_detected(18) and j < border[0] and i < 340):
+                if (border[1] != 0):
+                    j += 20
+            elif (GPIO.event_detected(19) and j > 0  and i < 340):
+                if (border[1] != 0):
+                    j -= 20
+            elif (GPIO.event_detected(24)):
+                if (border[1] != 0):
+                    if (n == 1 and j > 150):
+                        if(r == 1 or r == 3):
+                            r -= 1
+                    r += 1
+                    if (r >= 4):
+                        r = 0
             
             if (i == 340 or border[0] == 0):
                     break
@@ -1289,5 +1294,3 @@ while(game == True):
     # clear the grid of frozen pieces
     frozenPieces = []
     blockList = []
-
-
