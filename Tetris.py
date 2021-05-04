@@ -1342,55 +1342,76 @@ def screen(win, i, j, n, r):
 
     pygame.display.update()
 
-    pygame.time.delay(250)
+    if (yourScore < 500):
+        pygame.time.delay(450)
+    elif (yourScore < 1000):
+        pygame.time.delay(250)
+    else:
+        pygame.time.delay(50)
 
     return borders
 
 # the main game Loop
 def gameLoop():
     run = True
-    while (run == True):
-        # variable setup
-        # positioning the next block in the middle above the grid
-        i = -60
-        j = 80
-        n = random.randint(0, 6)
-        #n = 4
-        r = 0
+    
+    font = pygame.font.SysFont('timesnewroman', 40)
+    label = font.render('Press to start', 1, (255, 0, 0))
+    win.blit(label, (130, 400))
+    pygame.display.update()
 
-        while(True):
-            border = screen(win, i, j, n, r)
-            # player input checking
-            for event in pygame.event.get():
+    for event in pygame.event.get():
                 if (event.type == pygame.KEYDOWN):
-                    if (event.key == pygame.K_RIGHT and j < border[0] and i < 340):
-                        if (border[1] != 2):
-                            j += 20
-                    elif (event.key == pygame.K_LEFT and j > 0  and i < 340):
-                        if (border[1] != 3 ):
-                            j -= 20
-                    elif (event.key == pygame.K_UP):
-                        if (border[1] != 0):
-                            if (n == 1 and j > 150):
-                                if(r == 1 or r == 3):
-                                    r -= 1
-                            r += 1
-                            if (r >= 4):
-                                r = 0
-                    elif (event.key == pygame.K_DOWN):
-                        run = False
-                        pygame.display.quit()
-                        quit()
-            
-            if (i == 340 or border[0] == 0):
-                    break
-            # downwards movement of each piece
-            if (i < 340 and border[len(border) - 1] != 1):
-                i += 20
-                
-                    
-        if(gameOver() == True): 
-            run = False
+    
+                    while (run == True):
+                        # variable setup
+                        # positioning the next block in the middle above the grid
+                        i = -60
+                        j = 80
+                        n = random.randint(0, 6)
+                        #n = 4
+                        r = 0
+
+                        while(True):
+                            border = screen(win, i, j, n, r)
+                            # player input checking
+                            for event in pygame.event.get():
+                                if (event.type == pygame.KEYDOWN):
+                                    if (event.key == pygame.K_RIGHT and j < border[0] and i < 340):
+                                        if (border[1] != 2):
+                                            j += 20
+                                    elif (event.key == pygame.K_LEFT and j > 0  and i < 340):
+                                        if (border[1] != 3 ):
+                                            j -= 20
+                                    elif (event.key == pygame.K_UP):
+                                        if (border[1] != 0):
+                                            if (n == 1 and j > 150):
+                                                if(r == 1 or r == 3):
+                                                    r -= 1
+                                            r += 1
+                                            if (r >= 4):
+                                                r = 0
+                                    elif (event.key == pygame.K_DOWN):
+                                        run = False
+                                        pygame.display.quit()
+                                        quit()
+                            
+                            if (i == 340 or border[0] == 0):
+                                    break
+                            # downwards movement of each piece
+                            if (i < 340 and border[len(border) - 1] != 1):
+                                i += 20
+                                
+                                    
+                        if(gameOver() == True):
+                            # Game Over message
+                            font = pygame.font.SysFont('timesnewroman', 40, bold=True)
+                            label = font.render("Game Over", 1, (255, 118, 30))
+                            win.blit(label, (100, 400))
+                            pygame.display.update()
+                            pygame.time.delay(1000)
+                            win.fill((0,0,0))
+                            run = False
 highScore = 0     
 game = True            
 while(game == True):
@@ -1403,13 +1424,6 @@ while(game == True):
     
     if(highScore < yourScore):
         highScore = yourScore
-    
-    # Game Over message
-    font = pygame.font.SysFont('timesnewroman', 40, bold=True)
-    label = font.render("Game Over", 1, (255, 118, 30))
-    win.blit(label, (100, 400))
-    pygame.display.update()
-    pygame.time.delay(1000)
 
     # clear the grid of frozen pieces
     frozenPieces = []
