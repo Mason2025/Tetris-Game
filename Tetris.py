@@ -15,6 +15,9 @@ frozenPieces = []
 # list of the blocks comprising the pieces that won't move
 blockList = []
 
+# the current piece with its coordiantes
+currentPiece = []
+
 # variable all pieces use
 stack = False
 
@@ -148,80 +151,57 @@ def contactV(win, px1, py1, px2, py2, px3, py3, px4, py4, color):
         if(blockList[block].x == px4 and blockList[block].y == py4 + 20):
             return True
 
-        if(blockList[block].x == px1 and blockList[block].y == py1 + 20):
-            return True
-        if(blockList[block].x == px2 and blockList[block].y == py2 + 20):
-            return True
-        if(blockList[block].x == px3 and blockList[block].y == py3 + 20):
-            return True
-        if(blockList[block].x == px4 and blockList[block].y == py4 + 20):
-            return True
-
-        if(blockList[block].x == px1 and blockList[block].y == py1 + 20):
-            return True
-        if(blockList[block].x == px2 and blockList[block].y == py2 + 20):
-            return True
-        if(blockList[block].x == px3 and blockList[block].y == py3 + 20):
-            return True
-        if(blockList[block].x == px4 and blockList[block].y == py4 + 20):
-            return True
-
-        if(blockList[block].x == px1 and blockList[block].y == py1 + 20):
-            return True
-        if(blockList[block].x == px2 and blockList[block].y == py2 + 20):
-            return True
-        if(blockList[block].x == px3 and blockList[block].y == py3 + 20):
-            return True
-        if(blockList[block].x == px4 and blockList[block].y == py4 + 20):
-            return True
     return False
 
 
 # stops pieces from moving sidways into eachother
 def contactS(win, px1, py1, px2, py2, px3, py3, px4, py4):
 
-    for piece in range(len(frozenPieces)):
-        if((frozenPieces[piece].x1 == px1 + 20 or frozenPieces[piece].x1 == px1 - 20) and frozenPieces[piece].y1 == py1):
-            return 0
-        if((frozenPieces[piece].x1 == px2 + 20 or frozenPieces[piece].x1 == px2 - 20) and frozenPieces[piece].y1 == py2):
-            return 0
-        if((frozenPieces[piece].x1 == px3 + 20 or frozenPieces[piece].x1 == px3 - 20) and frozenPieces[piece].y1 == py3):
-            return 0
-        if((frozenPieces[piece].x1 == px4 + 20 or frozenPieces[piece].x1 == px4 - 20) and frozenPieces[piece].y1 == py4):
-            return 0
+    for block in range(len(blockList)):
+        if(blockList[block].x == px1 + 20 and blockList[block].y == py1):
+            return 2
+        if(blockList[block].x == px2 + 20 and blockList[block].y == py2):
+            return 2
+        if(blockList[block].x == px3 + 20 and blockList[block].y == py3):
+            return 2
+        if(blockList[block].x == px4 + 20 and blockList[block].y == py4):
+            return 2
 
-        if((frozenPieces[piece].x2 == px1 + 20 or frozenPieces[piece].x2 == px1 - 20) and frozenPieces[piece].y2 == py1):
-            return 0
-        if((frozenPieces[piece].x2 == px2 + 20 or frozenPieces[piece].x2 == px2 - 20) and frozenPieces[piece].y2 == py2):
-            return 0
-        if((frozenPieces[piece].x2 == px3 + 20 or frozenPieces[piece].x2 == px3 - 20) and frozenPieces[piece].y2 == py3):
-            return 0
-        if((frozenPieces[piece].x2 == px4 + 20 or frozenPieces[piece].x2 == px4 - 20) and frozenPieces[piece].y2 == py4):
-            return 0
 
-        if((frozenPieces[piece].x3 == px1 + 20 or frozenPieces[piece].x3 == px1 - 20) and frozenPieces[piece].y3 == py1):
-            return 0
-        if((frozenPieces[piece].x3 == px2 + 20 or frozenPieces[piece].x3 == px2 - 20) and frozenPieces[piece].y3 == py2):
-            return 0
-        if((frozenPieces[piece].x3 == px3 + 20 or frozenPieces[piece].x3 == px3 - 20) and frozenPieces[piece].y3 == py3):
-            return 0
-        if((frozenPieces[piece].x3 == px4 + 20 or frozenPieces[piece].x3 == px4 - 20) and frozenPieces[piece].y3 == py4):
-            return 0
-
-        if((frozenPieces[piece].x4 == px1 + 20 or frozenPieces[piece].x4 == px1 - 20) and frozenPieces[piece].y4 == py1):
-            return 0
-        if((frozenPieces[piece].x4 == px2 + 20 or frozenPieces[piece].x4 == px2 - 20) and frozenPieces[piece].y4 == py2):
-            return 0
-        if((frozenPieces[piece].x4 == px3 + 20 or frozenPieces[piece].x4 == px3 - 20) and frozenPieces[piece].y4 == py3):
-            return 0
-        if((frozenPieces[piece].x4 == px4 + 20 or frozenPieces[piece].x4 == px4 - 20) and frozenPieces[piece].y4 == py4):
-            return 0
+        if(blockList[block].x == px1 - 20 and blockList[block].y == py1):
+            return 3
+        if(blockList[block].x == px2 - 20 and blockList[block].y == py2):
+            return 3
+        if(blockList[block].x == px3 - 20 and blockList[block].y == py3):
+            return 3
+        if(blockList[block].x == px4 - 20 and blockList[block].y == py4):
+            return 3
     return 1
+
+# checks if the space is already housing a block
+#currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+def isFilled(currentPiece):
+
+    for block in range(len(blockList)):
+        if(blockList[block].x == currentPiece[0] and blockList[block].y == currentPiece[1]):
+            return True
+        if(blockList[block].x == currentPiece[2] and blockList[block].y == currentPiece[3]):
+            return True
+        if(blockList[block].x == currentPiece[4] and blockList[block].y == currentPiece[5]):
+            return True
+        if(blockList[block].x == currentPiece[6] and blockList[block].y == currentPiece[7]):
+            return True
+    
+    return False
+
+
 
 # the L Piece
 def LPiece(win, i, j, r):
 
-    border = 150    
+    border = 150
+
+    global currentPiece
 
     if(r == 1 and j < border):
         border = LPieceR(win, i, j)
@@ -256,12 +236,18 @@ def LPiece(win, i, j, r):
             pygame.draw.rect(win, color, (x , y , 20, 20))
 
             # checking to see if the piece has touched anything#
+            currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
         
         # adding the piece to the frozen pieces
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -277,6 +263,8 @@ def LPieceR(win, i, j):
     y = 200 + i
     color = (25, 255, 255)
     border = 130
+
+    global currentPiece
     
 
     # piece specifications
@@ -298,12 +286,17 @@ def LPieceR(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -318,6 +311,8 @@ def LPieceR2(win, i, j):
     y = 200 + i
     color = (25, 255, 255)
     border = 150
+
+    global currentPiece
     
     # piece specifications
     if (x < 500):
@@ -337,12 +332,17 @@ def LPieceR2(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -357,6 +357,8 @@ def LPieceR3(win, i, j):
     y = 200 + i
     color = (25, 255, 255)
     border = 130
+
+    global currentPiece
     
     # piece specifications
     if (x < 500):
@@ -377,12 +379,17 @@ def LPieceR3(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -394,7 +401,9 @@ def LPieceR3(win, i, j):
 # the J Piece
 def JPiece(win, i, j, r):
 
-    border = 150    
+    border = 150
+
+    global currentPiece
 
     if(r == 1 and j < border):
         border = JPieceR(win, i, j)
@@ -428,6 +437,7 @@ def JPiece(win, i, j, r):
             y4 = y
             pygame.draw.rect(win, color, (x , y , 20, 20))
 
+            currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
             # checking to see if the piece has touched anything#
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
@@ -435,6 +445,11 @@ def JPiece(win, i, j, r):
         
             # adding the piece to the frozen pieces
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -450,6 +465,8 @@ def JPieceR(win, i, j):
     y = 200 + i
     color = (0, 50, 255)
     border = 130
+
+    global currentPiece
     
 
     # piece specifications
@@ -471,12 +488,17 @@ def JPieceR(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -491,6 +513,8 @@ def JPieceR2(win, i, j):
     y = 200 + i
     color = (0, 50, 255)
     border = 130
+
+    global currentPiece
     
     # piece specifications
     if (x < 500):
@@ -511,12 +535,17 @@ def JPieceR2(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -531,6 +560,8 @@ def JPieceR3(win, i, j):
     y = 200 + i
     color = (0, 50, 255)
     border = 130
+
+    global currentPiece
     
     # piece specifications
     if (x < 500):
@@ -551,12 +582,17 @@ def JPieceR3(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -573,6 +609,8 @@ def OPiece(win, i, j, r):
     x = 100 + j
     y = 200 + i
     color = (0, 0, 0)
+
+    global currentPiece
 
     # piece specifications 
     if (x < 500):
@@ -595,6 +633,7 @@ def OPiece(win, i, j, r):
         x -= 20
         y -= 40
 
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -616,6 +655,11 @@ def OPiece(win, i, j, r):
 
     # adding the piece to the frozen pieces
     if (stack or i == 340):
+        if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
         frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, (0, 255, 0), i, j))
         frozenPieces[len(frozenPieces) - 1].createBlocks()
         return [0]
@@ -628,6 +672,8 @@ def OPiece(win, i, j, r):
 def TPiece(win, i, j, r):
 
     border = 130
+
+    global currentPiece
     
     if(r == 1 and j < border + 40):
         border = TPieceR(win, i, j)
@@ -662,6 +708,7 @@ def TPiece(win, i, j, r):
             y4 = y
             pygame.draw.rect(win, color, (x , y , 20, 20))
 
+            currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
             # checking to see if the piece has touched anything#
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
@@ -669,6 +716,11 @@ def TPiece(win, i, j, r):
         
             # adding the piece to the frozen pieces
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -684,6 +736,8 @@ def TPieceR(win, i, j):
     y = 200 + i
     color = (255, 0, 255)
     border = 150
+
+    global currentPiece
     
 
     # piece specifications
@@ -706,12 +760,17 @@ def TPieceR(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -726,6 +785,8 @@ def TPieceR2(win, i, j):
     y = 200 + i
     color = (255, 0, 255)
     border = 130
+
+    global currentPiece
     
     # piece specifications
     if (x < 500):
@@ -747,12 +808,17 @@ def TPieceR2(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -767,6 +833,8 @@ def TPieceR3(win, i, j):
     y = 200 + i
     color = (255, 0, 255)
     border = 150
+
+    global currentPiece
     
     # piece specifications
     if (x < 500):
@@ -787,12 +855,17 @@ def TPieceR3(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
-
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -807,6 +880,8 @@ def ZPiece(win, i, j, r):
     r = r % 2
 
     border = 150
+
+    global currentPiece
 
     if(r == 1 and j < border):
         border = ZPieceR(win, i, j)
@@ -836,6 +911,8 @@ def ZPiece(win, i, j, r):
             x -= 20
             y -= 40
 
+
+            currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -856,6 +933,11 @@ def ZPiece(win, i, j, r):
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -872,6 +954,8 @@ def ZPieceR(win, i, j):
     y = 200 + i
     color = (255, 255, 0)
     border = 130
+
+    global currentPiece
 
     # piece specifications
     if (x < 500):
@@ -894,11 +978,18 @@ def ZPieceR(win, i, j):
         x -= 40
         y -= 20
 
+
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -913,6 +1004,8 @@ def SPiece(win, i, j, r):
     r = r % 2
 
     border = 150
+
+    global currentPiece
 
     if(r == 1 and j < border):
         border = SPieceR(win, i, j)
@@ -943,7 +1036,8 @@ def SPiece(win, i, j, r):
             y4 = y
             pygame.draw.rect(win, (255, 255, 255), (x , y , 20, 20))
             y -= 40
-            
+
+            currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
             
@@ -964,6 +1058,11 @@ def SPiece(win, i, j, r):
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, (255, 255, 255), i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -980,6 +1079,8 @@ def SPieceR(win, i, j):
     y = 200 + i
     color = (255, 255, 255)
     border = 130
+
+    global currentPiece
 
     # piece specifications
     if (x < 500):
@@ -1001,11 +1102,17 @@ def SPieceR(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
 
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -1017,7 +1124,9 @@ def SPieceR(win, i, j):
 def IPiece(win, i, j, r):
     r = r % 2
 
-    border = 170    
+    border = 170
+
+    global currentPiece
 
     if(r == 1 and j < border - 40):
         border = IPieceR(win, i, j)
@@ -1048,6 +1157,7 @@ def IPiece(win, i, j, r):
             y4 = y
             pygame.draw.rect(win, color, (x , y , 20, 20))
 
+            currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
             # checking to see if the piece has touched anything#
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
@@ -1055,6 +1165,11 @@ def IPiece(win, i, j, r):
         
             # adding the piece to the frozen pieces
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -1070,6 +1185,8 @@ def IPieceR(win, i, j):
     y = 200 + i
     color = (255, 0, 150)
     border = 115
+
+    global currentPiece
 
     # piece specifications
     if (x < 500):
@@ -1090,11 +1207,17 @@ def IPieceR(win, i, j):
         y4 = y
         pygame.draw.rect(win, color, (x , y , 20, 20))
 
+        currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
     
         if (stack or i == 340):
+            if (isFilled(currentPiece)):
+                y1 -= 20
+                y2 -= 20
+                y3 -= 20
+                y4 -= 20
             frozenPieces.append(GamePiece(x1, y1, x2, y2, x3, y3, x4, y4, win, color, i, j))
             frozenPieces[len(frozenPieces) - 1].createBlocks()
             return [0]
@@ -1241,10 +1364,10 @@ def gameLoop():
             for event in pygame.event.get():
                 if (event.type == pygame.KEYDOWN):
                     if (event.key == pygame.K_RIGHT and j < border[0] and i < 340):
-                        if (border[1] != 0):
+                        if (border[1] != 2):
                             j += 20
                     elif (event.key == pygame.K_LEFT and j > 0  and i < 340):
-                        if (border[1] != 0):
+                        if (border[1] != 3 ):
                             j -= 20
                     elif (event.key == pygame.K_UP):
                         if (border[1] != 0):
@@ -1264,6 +1387,8 @@ def gameLoop():
             # downwards movement of each piece
             if (i < 340 and border[len(border) - 1] != 1):
                 i += 20
+                
+                    
         if(gameOver() == True): 
             run = False
 highScore = 0     
