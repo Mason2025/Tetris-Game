@@ -197,18 +197,18 @@ def isFilled(currentPiece):
 
 
 # the L Piece
-def LPiece(win, i, j, r):
+def LPiece(win, i, j, r, c):
 
     border = 150
 
     global currentPiece
 
     if(r == 1 and j < border):
-        border = LPieceR(win, i, j)
+        border = LPieceR(win, i, j, r, c)
     elif(r == 2 and j < border + 20):
-        border = LPieceR2(win, i, j)
+        border = LPieceR2(win, i, j, r, c)
     elif(r == 3 and j < border):
-        border = LPieceR3(win, i, j)
+        border = LPieceR3(win, i, j, r, c)
         
     
     else:
@@ -237,6 +237,8 @@ def LPiece(win, i, j, r):
 
             # checking to see if the piece has touched anything#
             currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+            if (c == 1):
+                return isFilled(currentPiece)
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -257,7 +259,7 @@ def LPiece(win, i, j, r):
 
     return border
 
-def LPieceR(win, i, j):
+def LPieceR(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -287,6 +289,8 @@ def LPieceR(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -305,7 +309,7 @@ def LPieceR(win, i, j):
 
     return results
 
-def LPieceR2(win, i, j):
+def LPieceR2(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -333,6 +337,8 @@ def LPieceR2(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -351,7 +357,7 @@ def LPieceR2(win, i, j):
 
     return results
 
-def LPieceR3(win, i, j):
+def LPieceR3(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -380,8 +386,11 @@ def LPieceR3(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
+
 
     
         if (stack or i == 340):
@@ -399,18 +408,18 @@ def LPieceR3(win, i, j):
     return results
 
 # the J Piece
-def JPiece(win, i, j, r):
+def JPiece(win, i, j, r, c):
 
     border = 150
 
     global currentPiece
 
     if(r == 1 and j < border):
-        border = JPieceR(win, i, j)
+        border = JPieceR(win, i, j, r, c)
     elif(r == 2 and j < border):
-        border = JPieceR2(win, i, j)
+        border = JPieceR2(win, i, j, r, c)
     elif(r == 3 and j < border):
-        border = JPieceR3(win, i, j)
+        border = JPieceR3(win, i, j, r, c)
     
     else:
         x = 100 + j
@@ -438,6 +447,8 @@ def JPiece(win, i, j, r):
             pygame.draw.rect(win, color, (x , y , 20, 20))
 
             currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+            if (c == 1):
+                return isFilled(currentPiece)
             # checking to see if the piece has touched anything#
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
@@ -459,7 +470,7 @@ def JPiece(win, i, j, r):
 
     return border
 
-def JPieceR(win, i, j):
+def JPieceR(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -489,6 +500,8 @@ def JPieceR(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -507,7 +520,7 @@ def JPieceR(win, i, j):
 
     return results
 
-def JPieceR2(win, i, j):
+def JPieceR2(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -536,6 +549,8 @@ def JPieceR2(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -554,7 +569,7 @@ def JPieceR2(win, i, j):
 
     return results
 
-def JPieceR3(win, i, j):
+def JPieceR3(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -583,6 +598,8 @@ def JPieceR3(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -602,7 +619,7 @@ def JPieceR3(win, i, j):
     return results
 
 # the O piece
-def OPiece(win, i, j, r):
+def OPiece(win, i, j, r, c):
 
     border = 150
 
@@ -634,6 +651,8 @@ def OPiece(win, i, j, r):
         y -= 40
 
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -669,18 +688,18 @@ def OPiece(win, i, j, r):
     
 
 # the T piece
-def TPiece(win, i, j, r):
+def TPiece(win, i, j, r, c):
 
     border = 130
 
     global currentPiece
     
     if(r == 1 and j < border + 40):
-        border = TPieceR(win, i, j)
+        border = TPieceR(win, i, j, r, c)
     elif(r == 2 and j < border + 40):
-        border = TPieceR2(win, i, j)
+        border = TPieceR2(win, i, j, r, c)
     elif(r == 3 and j < border + 40):
-        border = TPieceR3(win, i, j)
+        border = TPieceR3(win, i, j, r, c)
 
     else:
         x = 100 + j
@@ -709,6 +728,8 @@ def TPiece(win, i, j, r):
             pygame.draw.rect(win, color, (x , y , 20, 20))
 
             currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+            if (c == 1):
+                return isFilled(currentPiece)
             # checking to see if the piece has touched anything#
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
@@ -730,7 +751,7 @@ def TPiece(win, i, j, r):
 
     return border
 
-def TPieceR(win, i, j):
+def TPieceR(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -761,6 +782,8 @@ def TPieceR(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -779,7 +802,7 @@ def TPieceR(win, i, j):
 
     return results
 
-def TPieceR2(win, i, j):
+def TPieceR2(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -809,6 +832,8 @@ def TPieceR2(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -827,7 +852,7 @@ def TPieceR2(win, i, j):
 
     return results
 
-def TPieceR3(win, i, j):
+def TPieceR3(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -856,6 +881,8 @@ def TPieceR3(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
         
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -875,7 +902,7 @@ def TPieceR3(win, i, j):
     return results
         
 # the ZPiece
-def ZPiece(win, i, j, r):
+def ZPiece(win, i, j, r, c):
     
     r = r % 2
 
@@ -884,7 +911,7 @@ def ZPiece(win, i, j, r):
     global currentPiece
 
     if(r == 1 and j < border):
-        border = ZPieceR(win, i, j)
+        border = ZPieceR(win, i, j, r, c)
 
     else:
         x = 100 + j
@@ -913,6 +940,8 @@ def ZPiece(win, i, j, r):
 
 
             currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+            if (c == 1):
+                return isFilled(currentPiece)
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -948,7 +977,7 @@ def ZPiece(win, i, j, r):
     return border
 
 # rotation of the ZPiece
-def ZPieceR(win, i, j):
+def ZPieceR(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -980,6 +1009,8 @@ def ZPieceR(win, i, j):
 
 
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -999,7 +1030,7 @@ def ZPieceR(win, i, j):
     return results
 
 # the SPiece
-def SPiece(win, i, j, r):
+def SPiece(win, i, j, r, c):
     
     r = r % 2
 
@@ -1008,7 +1039,7 @@ def SPiece(win, i, j, r):
     global currentPiece
 
     if(r == 1 and j < border):
-        border = SPieceR(win, i, j)
+        border = SPieceR(win, i, j, r, c)
 
     else:
         x = 100 + j
@@ -1038,6 +1069,8 @@ def SPiece(win, i, j, r):
             y -= 40
 
             currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+            if (c == 1):
+                return isFilled(currentPiece)
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
             
@@ -1073,7 +1106,7 @@ def SPiece(win, i, j, r):
     return border
 
 # the S piece's rotation
-def SPieceR(win, i, j):
+def SPieceR(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -1103,6 +1136,8 @@ def SPieceR(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
 
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -1121,7 +1156,7 @@ def SPieceR(win, i, j):
 
     return results
 
-def IPiece(win, i, j, r):
+def IPiece(win, i, j, r, c):
     r = r % 2
 
     border = 170
@@ -1129,7 +1164,7 @@ def IPiece(win, i, j, r):
     global currentPiece
 
     if(r == 1 and j < border - 40):
-        border = IPieceR(win, i, j)
+        border = IPieceR(win, i, j, r, c)
         pass
     
     else:
@@ -1158,6 +1193,8 @@ def IPiece(win, i, j, r):
             pygame.draw.rect(win, color, (x , y , 20, 20))
 
             currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+            if (c == 1):
+                return isFilled(currentPiece)
             # checking to see if the piece has touched anything#
             stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
             contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
@@ -1179,7 +1216,7 @@ def IPiece(win, i, j, r):
 
     return border
 
-def IPieceR(win, i, j):
+def IPieceR(win, i, j, r, c):
 
     x = 100 + j
     y = 200 + i
@@ -1208,6 +1245,8 @@ def IPieceR(win, i, j):
         pygame.draw.rect(win, color, (x , y , 20, 20))
 
         currentPiece = [x1, y1, x2, y2, x3, y3, x4, y4]
+        if (c == 1):
+            return isFilled(currentPiece)
         stack = contactV(win, x1, y1, x2, y2, x3, y3, x4, y4, color)
         contactedSide = contactS(win, x1, y1, x2, y2, x3, y3, x4, y4)
 
@@ -1293,7 +1332,7 @@ def gameOver():
     return False
 
 # the function that fills the screen and calls the pieces
-def screen(win, i, j, n, r):
+def screen(win, i, j, n, r, c):
     
     global yourScore
     global highScore
@@ -1303,7 +1342,7 @@ def screen(win, i, j, n, r):
     
     checker(win, n)
 
-    borders = pieceList[n](win, i, j, r)
+    borders = pieceList[n](win, i, j, r, c)
 
     #if (len(borders) < 2):
     borders.append(0)
@@ -1343,9 +1382,9 @@ def screen(win, i, j, n, r):
     pygame.display.update()
 
     if (yourScore < 500):
-        pygame.time.delay(450)
+        pygame.time.delay(400)
     elif (yourScore < 1000):
-        pygame.time.delay(250)
+        pygame.time.delay(200)
     else:
         pygame.time.delay(50)
 
@@ -1371,9 +1410,10 @@ def gameLoop():
                         n = random.randint(0, 6)
                         #n = 4
                         r = 0
+                        c = 0
 
                         while(True):
-                            border = screen(win, i, j, n, r)
+                            border = screen(win, i, j, n, r, c)
                             # player input checking
                             for event in pygame.event.get():
                                 if (event.type == pygame.KEYDOWN):
@@ -1391,11 +1431,18 @@ def gameLoop():
                                             r += 1
                                             if (r >= 4):
                                                 r = 0
+                                            c = 1
+                                            if (pieceList[n](win, i, j, r, c)):
+                                                r -= 1
+                                                if (r < 0):
+                                                    r = 4
+                                            c = 0
                                     elif (event.key == pygame.K_DOWN):
                                         run = False
                                         pygame.display.quit()
                                         quit()
-                            
+
+                            # stops the movement of the current piece
                             if (i == 340 or border[0] == 0):
                                     break
                             # downwards movement of each piece
